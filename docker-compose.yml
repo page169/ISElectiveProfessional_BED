@@ -1,0 +1,6 @@
+services:
+  tpc-rag:
+    build: .
+    ports: ["8501:8501"]
+    env_file: .env          # holds GEMINI_API_KEY; never baked into the image
+    restart: unless-stopped
