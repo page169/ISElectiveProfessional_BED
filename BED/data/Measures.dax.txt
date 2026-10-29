@@ -1,0 +1,14 @@
+Total Students = COUNTROWS(Students)
+Avg Math = AVERAGE(Students[Math])
+Avg Reading = AVERAGE(Students[Reading])
+Avg Writing = AVERAGE(Students[Writing])
+Avg Overall = AVERAGE(Students[AvgScore])
+At-Risk Count = CALCULATE([Total Students], Students[PerfBand] = "At Risk")
+At-Risk % = DIVIDE([At-Risk Count], [Total Students])
+Prep Completion % = DIVIDE(CALCULATE([Total Students], Students[TestPrep] = "completed"), [Total Students])
+Avg Overall Prep = CALCULATE([Avg Overall], Students[TestPrep] = "completed")
+Avg Overall No Prep = CALCULATE([Avg Overall], Students[TestPrep] = "none")
+Prep Gap = [Avg Overall Prep] - [Avg Overall No Prep]
+Lunch Gap = CALCULATE([Avg Overall], Students[Lunch] = "standard") - CALCULATE([Avg Overall], Students[Lunch] = "free/reduced")
+Overall Avg (All Students) = CALCULATE([Avg Overall], ALL(Students))
+Gap vs School Avg = [Avg Overall] - [Overall Avg (All Students)]
